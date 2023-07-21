@@ -1,0 +1,29 @@
+
+
+
+<div class="clear_after display_flex" style="margin-bottom:10px;">
+
+	<div class="col result_left_col">
+		<div style="text-align:center;padding:3px 5px;color:white;background-color:#00b6ff;border-radius:4px 4px 0 0;">
+			{{scopeModel.name}}
+		</div>
+		<img ng-src="{{scopeModel.src}}" style="width:100%;height:auto;">
+	</div>
+	
+	<div class="col result_right_col" is-loading="scopeModel.isLoading">  
+		<div>
+			<button ng-click="scopeModel.copyResult()" class="my-btn-primary">Copy</button>
+			<button ng-click="scopeModel.downloadTxt()" class="my-btn-primary">Download .txt</button>
+			<button ng-click="scopeModel.downloadDoc()" class="my-btn-primary">Download .doc</button>
+			<label class="my-btn-primary" style="cursor:pointer;">
+				<input type="checkbox" ng-model="scopeModel.Checked" ng-change="scopeModel.checkBoxChanged()" />
+				Single Line
+			</label>
+		</div>
+		<div>
+			<textarea id="textarea-{{ctrl.id}}" ng-model="scopeModel.resultText" ng-disabled="scopeModel.disableTextarea" > 
+			</textarea>
+		</div>
+	</div>
+	
+</div>

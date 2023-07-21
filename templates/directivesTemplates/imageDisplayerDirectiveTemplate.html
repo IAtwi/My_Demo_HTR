@@ -1,0 +1,26 @@
+
+
+<span class="image_container" style="margin:20px;">
+	
+	<img ng-src="{{scopeModel.src}}" alt="Image" />
+	
+	<button id="crop_img" class="top_left" ng-click="scopeModel.displayInModal()" ng-hide="scopeModel.submitted">
+		Crop <i class="fa fa-crop"></i>
+	</button>
+	<button id="detect_img" class="top_left" ng-click="scopeModel.displayInModal()" ng-show="scopeModel.gotDetection">
+		Detect
+	</button>
+	
+	
+	<button id="remove_img" class="top_right" ng-click="scopeModel.removeImage()" ng-hide="scopeModel.submitted">
+		<i class="fa fa-times"></i>
+	</button>
+	<span id="detection_count" class="top_right" ng-show="scopeModel.gotDetection">
+		{{scopeModel.detectionCount}}
+	</span>
+	
+	<span class="bottom_left">
+		{{scopeModel.name}}
+	</span>
+	
+</span>

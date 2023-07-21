@@ -1,0 +1,11 @@
+
+<div ng-show="scopeModel.showImages">
+	 
+	<div id="images_displayer">
+		<div ng-repeat="image in scopeModel.images">
+			<image-displayer on-ready="image.onImageDisplayerReady"></image-displayer>
+		</div>
+	</div>
+	
+	<button id="clear-all" class="btn btn-danger" ng-click="scopeModel.clearImages()" ng-hide="scopeModel.submitted">Clear All</button>
+</div>

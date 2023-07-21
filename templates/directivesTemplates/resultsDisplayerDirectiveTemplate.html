@@ -1,0 +1,5 @@
+<h3 class="centered_blue">Results</h3>
+ 
+<div ng-repeat="result in scopeModel.results">
+	<result-displayer on-ready="result.onResultDisplayerReady" id="{{$index}}"></result-displayer>
+</div>

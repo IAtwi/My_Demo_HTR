@@ -1,0 +1,66 @@
+{% extends "base.html" %} {% block content %}
+<div ng-controller="mainController">
+	<div id="main-section" class="shadowBox" is-loading="scopeModel.isAppLoading">
+		
+		<h1 class="centered_blue">Hadi Atwi Handwritten Text Recognition Demo</h1>
+		
+		<div id="input-section" ng-hide="scopeModel.submitPressed">
+			<div id="input-area">
+			
+				<div>
+					<img src="https://www.prepostseo.com/imgs/upload-icon.png" style="width:148px;height:107px;border:none" alt="uploader">
+				</div>
+				
+				<div class="drop-description">
+					Drag & Drop / ( Ctrl + V )
+				</div>
+				
+				<form id="upload-file" method="post" enctype="multipart/form-data">
+					<input type="file" id="imageUpload" name="file" accept=".png, .jpg, .jpeg" onchange="angular.element(this).scope().scopeModel.handleFileChange(this)" style="display:none;" multiple>
+					<button id="upload_btn" ng-click="scopeModel.uploadImages()" class="btn">
+						<span data-title="Upload Image">
+							<i class="fa fa-plus"></i> &nbsp;&nbsp;Browse Files
+						</span>
+					</button>
+				</form>
+				
+			</div>
+		</div>
+		
+		<section id="images_section" ng-hide="scopeModel.recognizePressed">
+			<images-displayer on-ready="scopeModel.onImagesDisplayerReady"></images-displayer>
+		</section>
+		
+		<section id="submit-section" class="center" ng-hide="scopeModel.submitPressed">
+			<button id="submit-btn" class="btn btn-primary my-btn-primary" ng-click="scopeModel.submit()">Submit</button>
+		</section>
+		
+		<section id="jcrop-section" ng-show="scopeModel.showJCropSection">
+			<h3 class="centered_blue">{{scopeModel.detectionsCount}} {{scopeModel.JCropSectionTitle}} : {{scopeModel.name}}</h3>
+			<img id="jcrop_img" ng-src="{{scopeModel.src}}" style="max-width:800px;max-height:700px;" />
+			<div class="center">
+				<button class="btn btn-primary my-btn-primary" ng-click="scopeModel.save()">Save</button>
+				<button class="btn btn-primary my-btn-primary" ng-click="scopeModel.cancel()">Cancel</button>
+			</div>
+		</section>
+		
+		<section id="actions-section" class="center" ng-show="scopeModel.submitPressed && scopeModel.showActionSection" is-loading="scopeModel.isLoading">
+			<button class="btn btn-primary my-btn-primary" ng-click="scopeModel.detectAll()" ng-hide="scopeModel.recognizePressed"> Detect </button>
+			<button class="btn btn-success" ng-click="scopeModel.recognizeAll()" ng-hide="scopeModel.recognizePressed"> Recognize </button><br/>
+			<button class="btn btn-danger" ng-click="scopeModel.reset()" style="margin-top:3px;"> Reset </button>
+		</section>
+		
+		
+		<section id="results_section" ng-show="scopeModel.recognizePressed">
+			<results-displayer on-ready="scopeModel.onResultsDisplayerReady"></results-displayer>
+		</section>
+		
+		<!-- <section>  -->
+			<!-- <button ng-click="scopeModel.test()">test btn</button><br> -->
+		<!-- </section> -->
+		
+	</div>
+</div>
+
+
+{% endblock %}
